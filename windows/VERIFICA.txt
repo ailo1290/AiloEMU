@@ -1,0 +1,119 @@
+AILOEMU 2.2.4 - RAPPORTO DI VERIFICA
+18 settembre 2026
+
+CORE N64 UFFICIALE 2.2.4
+Sostituita la DLL personalizzata con la build ufficiale Libretro per Windows
+x86-64 del 18 settembre 2026. La corrispondente build Linux ufficiale ha
+completato 60 fotogrammi della ROM diagnostica libera in circa 0,5 secondi;
+la precedente impiegava circa 1,5 secondi per il solo primo fotogramma e si
+bloccava con Super Mario 64. Import DLL Windows: KERNEL32, msvcrt, USER32.
+Non è stato possibile provare il dump commerciale dell'utente in questo
+ambiente; il collaudo finale di Super Mario 64 deve essere eseguito su Windows.
+
+CORREZIONE N64 .N64 2.2.3
+Riprodotto il blocco con una ROM diagnostica libera convertita realmente nel
+byte order .n64 (header 40 12 37 80). Dopo la normalizzazione automatica in
+memoria: caricamento, primo fotogramma e chiusura superati. Il dump originale
+resta invariato. Cached Interpreter e Angrylion multithread; entrambi i
+ricompilatori dinamici sono stati esclusi perché si bloccano nel test.
+
+CORREZIONE N64 2.2.2
+Test con ROM diagnostica N64 libera (Unlicense): caricamento da percorso
+Documenti con spazi e carattere accentato, primo fotogramma, chiusura del core
+e rimozione della cache superati. Cached Interpreter, Angrylion e RSP HLE.
+
+SPRITE DETTAGLIATE 2.2.1
+Renderer C++ condiviso fra anteprime e interfaccia Windows. Nessuna immagine
+esterna copiata. Test nativo: 21 sprite, 193 aree cliccabili entro i limiti
+e senza sovrapposizioni; controllo delle etichette per le mappe speciali.
+Anteprime ispezionate visivamente. Build Windows con -Wall -Wextra -Werror.
+Le etichette Mega Drive/32X, WonderSwan, Virtual Boy e N64 sono state
+confrontate con i descrittori nei sorgenti locali dei core. N64 ora abilita
+parallel-n64-alt-map per rendere indipendenti i quattro pulsanti C.
+Test core rieseguiti sulla 2.2.1: NES 25/25, multisistema 74/74.
+Report: verification/integration-2.2.1.txt e multisystem-2.2.1.txt.
+Limite: questa sessione non dispone di Windows/Wine; non è stato effettuato
+un test interattivo della finestra, della cattura tasti o di gamepad fisici.
+I test core riportati sotto appartengono alle verifiche precedenti, salvo
+nuovi report esplicitamente datati 2.2.1. Non certificano tutti i giochi.
+
+CONTROLLER PIXEL ART E TASTIERA 2.2.0
+La precedente lista di associazioni è stata sostituita da controller pixel art
+interattivi che cambiano forma e colore per sistema. Le aree dei pulsanti sono
+cliccabili e riportano al loro interno l'associazione selezionata. Ogni profilo
+conserva due mappe indipendenti, tastiera e gamepad, attivabili insieme. La
+cattura tastiera gestisce anche frecce e modificatori prima della navigazione
+standard della finestra. Compilazione C++17 con -Wall -Wextra -Werror superata.
+
+CONTROLLER E ASPETTO 2.1.0
+La build Windows include una finestra di configurazione dedicata. I profili
+sono separati per 21 sistemi e fino a quattro porte, con 16 comandi ciascuno.
+Sono supportate enumerazione e lettura XInput (4 porte) e WinMM (dispositivi
+generici esposti da Windows), cattura di pulsanti/POV/assi e persistenza INI.
+Il tema salva cinque colori indipendenti e conserva nero/verde come predefinito.
+Il frontend è stato ricompilato con -Wall -Wextra -Werror senza avvisi.
+
+CORREZIONE NINTENDO DS 2.0.1
+Il frontend crea una copia temporanea della ROM .nds con nome ASCII nella
+cartella dati, usa il percorso breve Windows quando disponibile e abilita il
+caricamento in memoria del core DeSmuME 2015. Questo evita il fallimento delle
+API file legacy con percorsi lunghi/Unicode. La cache viene eliminata in caso
+di errore, cambio ROM o chiusura. E' stato aggiunto un controllo dei segmenti
+ARM7/ARM9 nell'header per identificare dump troncati prima dell'avvio del core.
+Il test smoke NDS con immagine homebrew sintetica, nome accentato e spazi ha
+caricato il core, prodotto un fotogramma e confermato la rimozione della cache.
+
+BUILD WINDOWS
+Frontend C++17 compilato con MinGW-w64 GCC 13.2.0, -Wall -Wextra -Werror.
+AiloEMU.exe e 14 core DLL sono PE32+ x86-64. L'analisi delle importazioni è
+in verification/imports-2.0.txt. Oltre alle DLL di sistema Windows, quattro
+core richiedono libwinpthread-1.dll, inclusa accanto all'EXE. Non servono
+Visual C++ Runtime, .NET, RetroArch o installazione.
+
+TEST DI INTEGRAZIONE CON ROM ORIGINALI CC0
+  NES: 25 superati, 0 falliti.
+  SNES/GB/GBC/GBA/audio/cambio core: 74 superati, 0 falliti.
+
+Sono verificati framebuffer, input, geometria, audio, SRAM/RTC, salvataggi
+atomici, save-state con controllo ROM/core, replay deterministico, reset,
+PAL/NTSC, cambio ripetuto tra core e ricampionamento a 48 kHz. I soak test
+coprono 60 secondi emulati NES e 30 secondi per SNES/GB/GBC/GBA.
+
+NUOVI CORE 2.0
+I seguenti moduli nativi compilati dagli stessi sorgenti hanno superato
+caricamento dinamico, versione API, inizializzazione, lettura metadati e
+presenza degli entry point load/run/serialize:
+  DeSmuME 2015 git 422b688
+  Genesis Plus GX v1.7.4 c2838c7
+  Beetle NeoPop v1.29.0.0 a50d5ac
+  Beetle PCE Fast v1.31.0.0
+  Beetle VB v1.31.0 83ed426
+  Beetle WonderSwan v0.9.35.1 4b01295
+  ParaLLEl N64 1.0 2f3bf60
+  PicoDrive 2.05-ab02114
+  PokeMini v0.60
+  ProSystem 1.3e 8a88014
+  Stella 2014 3.9.3 7d1361e
+
+Questo controllo non equivale a una matrice di compatibilità per ogni gioco.
+Non sono stati usati giochi commerciali. In particolare NDS/N64 e i nuovi
+sistemi non hanno la stessa copertura end-to-end delle cinque demo incluse.
+
+AMBIENTE E LIMITI
+I test automatici sono stati eseguiti su Linux con gli stessi sorgenti e lo
+stesso adattatore Core. Non sono verificati qui: avvio su Windows fisico,
+GDI/DPI/multi-monitor, altoparlanti waveOut, controller XInput reali e ogni
+titolo commerciale. Verifica.cmd esegue i 99 test storici sul PC dell'utente.
+
+Il core N64 è compilato con Angrylion software, senza OpenGL/Vulkan e senza
+dynarec, per ridurre dipendenze esterne; può essere molto lento. Il core NDS
+usa emulazione firmware/BIOS interna e stilo via puntatore; microfono e rete
+non sono esposti. Nessun file BIOS esterno è distribuito o richiesto per i
+formati dichiarati in LEGGIMI.txt.
+
+RISULTATI HARDWARE NES PRECEDENTI (CORE INVARIATO)
+CPU ufficiale: 16/16 sottotest superati.
+APU: fallisce 4-jitter, IRQ troppo anticipato.
+PPU: fallisce 01-vbl_basics, VBL corto a background spento.
+MMC3: fallisce 1-clocking, caso di commutazione A12 via PPUADDR.
+I rapporti restano in verification/. Non è dichiarata compatibilità universale.

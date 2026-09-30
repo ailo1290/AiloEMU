@@ -1,0 +1,23 @@
+AiloEMU 2.0 - dipendenze runtime Windows (analisi PE con objdump)
+
+AiloEMU.exe: comdlg32.dll, GDI32.dll, KERNEL32.dll, msvcrt.dll,
+             SHELL32.dll, USER32.dll, WINMM.dll
+
+desmume2015_libretro.dll: KERNEL32.dll, msvcrt.dll, libwinpthread-1.dll
+genesis_plus_gx_libretro.dll: KERNEL32.dll, msvcrt.dll
+mednafen_ngp_libretro.dll: KERNEL32.dll, msvcrt.dll, libwinpthread-1.dll
+mednafen_pce_fast_libretro.dll: KERNEL32.dll, msvcrt.dll
+mednafen_vb_libretro.dll: KERNEL32.dll, msvcrt.dll, libwinpthread-1.dll
+mednafen_wswan_libretro.dll: KERNEL32.dll, msvcrt.dll
+parallel_n64_libretro.dll: KERNEL32.dll, msvcrt.dll
+picodrive_libretro.dll: KERNEL32.dll, msvcrt.dll
+pokemini_libretro.dll: KERNEL32.dll, msvcrt.dll
+prosystem_libretro.dll: KERNEL32.dll, msvcrt.dll
+stella2014_libretro.dll: KERNEL32.dll, msvcrt.dll, libwinpthread-1.dll
+fceumm_libretro.dll: dipendenze di sistema Windows soltanto
+snes9x_libretro.dll: dipendenze di sistema Windows soltanto
+mgba_libretro.dll: dipendenze di sistema Windows soltanto
+
+libwinpthread-1.dll: KERNEL32.dll, msvcrt.dll
+
+Tutte le dipendenze non appartenenti a Windows sono incluse nella cartella.

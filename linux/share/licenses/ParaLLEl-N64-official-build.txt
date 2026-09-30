@@ -1,0 +1,11 @@
+ParaLLEl N64 official Libretro nightly build
+Retrieved: 18 September 2026
+Binary source:
+https://buildbot.libretro.com/nightly/windows/x86_64/latest/parallel_n64_libretro.dll.zip
+Windows DLL SHA-256:
+52b2d139b437ab3a3efa2eeda4c675f42f2b630144a46f362eeb57ef790b3da6
+Upstream source and license:
+https://github.com/libretro/parallel-n64
+
+The emulator package includes the existing ParaLLEl-N64 license notices.
+No Nintendo ROM, BIOS or proprietary firmware is included.

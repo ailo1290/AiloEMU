@@ -1,0 +1,17 @@
+AiloEMU 2.0 - controllo ABI dei nuovi nuclei nativi
+
+PASS desmume2015_libretro.so | DeSmuME 2015 | git 422b688 | nds|bin
+PASS genesis_plus_gx_libretro.so | Genesis Plus GX | v1.7.4 c2838c7
+PASS mednafen_ngp_libretro.so | Beetle NeoPop | v1.29.0.0 a50d5ac
+PASS mednafen_pce_fast_libretro.so | Beetle PCE Fast | v1.31.0.0
+PASS mednafen_vb_libretro.so | Beetle VB | v1.31.0 83ed426
+PASS mednafen_wswan_libretro.so | Beetle WonderSwan | v0.9.35.1 4b01295
+PASS parallel_n64_libretro.so | ParaLLEl N64 | 1.0 2f3bf60
+PASS picodrive_libretro.so | PicoDrive | 2.05-ab02114
+PASS pokemini_libretro.so | PokeMini | v0.60
+PASS prosystem_libretro.so | ProSystem | 1.3e 8a88014
+PASS stella2014_libretro.so | Stella 2014 | 3.9.3 7d1361e
+
+Per ciascun modulo: dlopen riuscito, API libretro compatibile, init/deinit
+riusciti, metadati presenti, entry point load/run/serialize trovati.
+Questo è un controllo strutturale, non una prova di ogni gioco commerciale.

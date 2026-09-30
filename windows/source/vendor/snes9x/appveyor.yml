@@ -1,0 +1,37 @@
+version: 1.63-{build}
+
+image: Visual Studio 2022
+
+environment:
+  matrix:
+  - generator: "Visual Studio 2022"
+    config: libretro Release
+    platform: Win32
+    arch: libretro
+    output: libretro\Win32\libretro Release\snes9x_libretro.dll
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
+
+  - generator: "Visual Studio 2022"
+    config: libretro Release
+    platform: x64
+    arch: libretro-x64
+    output: libretro\x64\libretro Release\snes9x_libretro.dll
+    APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2022
+
+init:
+  - git config --global core.autocrlf input
+
+build_script:
+  - msbuild libretro\libretro-win32.vcxproj /t:build /p:Configuration="%config%";Platform="%platform%" /m /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
+
+after_build:
+  - ps: $env:my_version = "$env:APPVEYOR_BUILD_VERSION-$($env:APPVEYOR_REPO_COMMIT.substring(0,7))"
+  - set package_name=snes9x-%my_version%-%arch%
+  - if exist artifacts rmdir /s /q artifacts
+  - mkdir artifacts
+  - copy "%output%" artifacts
+  - 7z a %package_name%.zip .\artifacts\*
+
+artifacts:
+  - path: $(package_name).zip
+    name: $(arch)

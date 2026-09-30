@@ -1,0 +1,18 @@
+AiloEMU 2.0.1 - Nintendo DS smoke test
+18 settembre 2026
+
+Core: DeSmuME 2015 git 422b688 (build nativa dagli stessi sorgenti)
+Contenuto: immagine homebrew sintetica, nessuna ROM commerciale
+Percorso di prova: nome con spazi e carattere accentato
+
+PASS caricamento del core
+PASS validazione header ARM7/ARM9
+PASS caricamento del contenuto .nds
+PASS produzione del primo fotogramma
+PASS rimozione della copia cache dopo la chiusura
+
+RESULT: Nintendo DS smoke test passed
+
+Il test automatico è stato eseguito su Linux e verifica l'adattatore Core e la
+logica di cache condivisi con la build Windows. Il percorso breve Win32 resta
+una parte specifica dell'EXE Windows e non è eseguibile in questo ambiente.

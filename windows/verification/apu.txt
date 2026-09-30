@@ -1,0 +1,14 @@
+tests/nes-test-roms/apu_test/apu_test.nes
+frames=94
+status=1
+
+Frame irq is set too soon
+
+4-jitter
+
+Failed #2
+
+While running test 4 of 8
+
+
+

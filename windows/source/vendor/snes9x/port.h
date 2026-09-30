@@ -1,0 +1,183 @@
+/*****************************************************************************\
+     Snes9x - Portable Super Nintendo Entertainment System (TM) emulator.
+                This file is licensed under the Snes9x License.
+   For further information, consult the LICENSE file in the root directory.
+\*****************************************************************************/
+
+#ifndef _PORT_H_
+#define _PORT_H_
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
+#include <limits.h>
+#include <time.h>
+#include <string.h>
+#include <sys/types.h>
+
+#ifdef __WIN32__
+#define NOMINMAX 1
+#include <windows.h>
+#endif
+
+#ifndef PIXEL_FORMAT
+#define PIXEL_FORMAT RGB565
+#endif
+
+#if defined(__GNUC__)
+#define alwaysinline  inline __attribute__((always_inline))
+#elif defined(_MSC_VER)
+#define alwaysinline  __forceinline
+#else
+#define alwaysinline  inline
+#endif
+
+#ifndef snes9x_types_defined
+#define snes9x_types_defined
+typedef unsigned char		bool8;
+#include <stdint.h>
+typedef intptr_t			pint;
+typedef int8_t				int8;
+typedef uint8_t				uint8;
+typedef int16_t				int16;
+typedef uint16_t			uint16;
+typedef int32_t				int32;
+typedef uint32_t			uint32;
+typedef int64_t				int64;
+typedef uint64_t			uint64;
+#endif	/* snes9x_types_defined */
+
+#ifndef TRUE
+#define TRUE	1
+#endif
+#ifndef FALSE
+#define FALSE	0
+#endif
+
+#ifndef __WIN32__
+#ifndef PATH_MAX
+#define PATH_MAX        1024
+#endif
+#else
+#ifndef PATH_MAX
+#define PATH_MAX        _MAX_PATH
+#endif
+#endif
+
+#include "fscompat.h"
+
+#ifdef __WIN32__
+#ifndef snprintf
+   #define snprintf _snprintf
+#endif
+#ifndef strcasecmp
+   #define strcasecmp	stricmp
+#endif
+#ifndef strncasecmp
+   #define strncasecmp	strnicmp
+#endif
+#endif  /* __WIN32__ */
+
+#if defined(__DJGPP) || defined(__WIN32__)
+#define SLASH_STR	"\\"
+#define SLASH_CHAR	'\\'
+#else
+#define SLASH_STR	"/"
+#define SLASH_CHAR	'/'
+#endif
+
+#ifndef TITLE
+#define TITLE "Snes9x"
+#endif
+
+#if defined(__i386__) || defined(__i486__) || defined(__i586__) || defined(__i686__) || defined(__x86_64__) || defined(__alpha__) || defined(__MIPSEL__) || defined(_M_IX86) || defined(_M_X64) || defined(_XBOX1) || defined(__arm__) || defined(ANDROID) || defined(__aarch64__) || (defined(__BYTE_ORDER__) && __BYTE_ORDER == __ORDER_LITTLE_ENDIAN__)
+#define LSB_FIRST
+#else
+#define MSB_FIRST
+#endif
+
+/* Alignment-safe accessors.  The emulated buses issue unaligned 16/32-bit
+ * accesses constantly (immediate operand fetches, VRAM/WRAM word I/O), which
+ * the old *(uint16 *) casts made undefined behaviour.  On little-endian
+ * hosts, memcpy through an inline helper is the canonical form every
+ * supported compiler (GCC, Clang, MSVC) lowers to a single unaligned
+ * load/store, and unlike byte-composed macros it neither trips UBSan nor
+ * defeats alias analysis around the stores.  Big-endian hosts keep the
+ * byte-composed macros, which implement the little-endian bus semantics
+ * explicitly.  The 3-byte read also no longer touches a fourth byte (the
+ * old cast form read 32 bits and masked, overreading at buffer ends). */
+#ifndef MSB_FIRST
+
+#if defined(_MSC_VER)
+#define S9X_ACCESS_INLINE static __inline
+#else
+#define S9X_ACCESS_INLINE static __inline__
+#endif
+
+S9X_ACCESS_INLINE uint16 s9x_read_word (const void *s)
+{
+	uint16	v;
+	memcpy(&v, s, 2);
+	return (v);
+}
+
+S9X_ACCESS_INLINE uint32 s9x_read_3word (const void *s)
+{
+	/* Word + byte composition rather than memcpy(&v, s, 3): compilers do
+	   not merge 3-byte memcpy into a load and instead spill through a
+	   stack temporary (with a stack-protector round trip where enabled),
+	   ~15 instructions where the forms below are 3-4.  Verified on GCC
+	   x86-64 and aarch64 at -O3. */
+	uint16	lo;
+
+	memcpy(&lo, s, 2);
+	return ((uint32) lo | ((uint32) *((const uint8 *) s + 2) << 16));
+}
+
+S9X_ACCESS_INLINE uint32 s9x_read_dword (const void *s)
+{
+	uint32	v;
+	memcpy(&v, s, 4);
+	return (v);
+}
+
+S9X_ACCESS_INLINE void s9x_write_word (void *s, uint16 d)
+{
+	memcpy(s, &d, 2);
+}
+
+S9X_ACCESS_INLINE void s9x_write_3word (void *s, uint32 d)
+{
+	uint16	lo = (uint16) d;
+
+	memcpy(s, &lo, 2);
+	*((uint8 *) s + 2) = (uint8) (d >> 16);
+}
+
+S9X_ACCESS_INLINE void s9x_write_dword (void *s, uint32 d)
+{
+	memcpy(s, &d, 4);
+}
+
+#define READ_WORD(s)		s9x_read_word(s)
+#define READ_3WORD(s)		s9x_read_3word(s)
+#define READ_DWORD(s)		s9x_read_dword(s)
+#define WRITE_WORD(s, d)	s9x_write_word((s), (uint16) (d))
+#define WRITE_3WORD(s, d)	s9x_write_3word((s), (uint32) (d))
+#define WRITE_DWORD(s, d)	s9x_write_dword((s), (uint32) (d))
+
+#else
+#define READ_WORD(s)		(*(uint8 *) (s) | (*((uint8 *) (s) + 1) << 8))
+#define READ_3WORD(s)		(*(uint8 *) (s) | (*((uint8 *) (s) + 1) << 8) | (*((uint8 *) (s) + 2) << 16))
+#define READ_DWORD(s)		((uint32) *(uint8 *) (s) | ((uint32) *((uint8 *) (s) + 1) << 8) | ((uint32) *((uint8 *) (s) + 2) << 16) | ((uint32) *((uint8 *) (s) + 3) << 24))
+#define WRITE_WORD(s, d)	*(uint8 *) (s) = (uint8) (d), *((uint8 *) (s) + 1) = (uint8) ((d) >> 8)
+#define WRITE_3WORD(s, d)	*(uint8 *) (s) = (uint8) (d), *((uint8 *) (s) + 1) = (uint8) ((d) >> 8), *((uint8 *) (s) + 2) = (uint8) ((d) >> 16)
+#define WRITE_DWORD(s, d)	*(uint8 *) (s) = (uint8) (d), *((uint8 *) (s) + 1) = (uint8) ((d) >> 8), *((uint8 *) (s) + 2) = (uint8) ((d) >> 16), *((uint8 *) (s) + 3) = (uint8) ((d) >> 24)
+#endif
+
+#define SWAP_WORD(s)		(s) = (((s) & 0xff) <<  8) | (((s) & 0xff00) >> 8)
+#define SWAP_DWORD(s)		(s) = (((s) & 0xff) << 24) | (((s) & 0xff00) << 8) | (((s) & 0xff0000) >> 8) | (((s) & 0xff000000) >> 24)
+
+#include "pixform.h"
+
+#endif

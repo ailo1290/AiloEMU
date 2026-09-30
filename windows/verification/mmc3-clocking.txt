@@ -1,0 +1,10 @@
+tests/nes-test-roms/mmc3_test_2/rom_singles/1-clocking.nes
+frames=30
+status=3
+
+Should decrement when A12 is toggled via PPUADDR
+
+1-clocking
+
+Failed #3
+

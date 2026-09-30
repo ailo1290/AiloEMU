@@ -1,0 +1,10 @@
+tests/nes-test-roms/ppu_vbl_nmi/rom_singles/01-vbl_basics.nes
+frames=147
+status=7
+
+VBL period is too short with BG off
+
+01-vbl_basics
+
+Failed #7
+

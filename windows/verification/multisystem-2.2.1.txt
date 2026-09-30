@@ -1,0 +1,80 @@
+Core SNES version: 1.63; FPS 60.0988; audio 32040
+PASS SNES loads ROM and delivers video
+PASS SNES native geometry
+PASS SNES visible graphics
+PASS SNES frame timing and audio callbacks
+PASS SNES A, L and R input reach emulated hardware
+PASS SNES input changes display
+PASS SNES one-second audio sample count
+PASS SNES X and Y inputs
+PASS SNES CPU advances before restore
+PASS SNES disk save-state restores CPU RAM
+PASS SNES deterministic video/RAM replay
+PASS SNES battery memory available
+PASS SNES battery save survives ROM reload
+PASS SNES reset returns to demo
+PASS SNES 30-second emulated soak run
+PASS SNES manual PAL mode
+Core GB version: 0.11-1-7a12d6d; FPS 59.7275; audio 131072
+PASS GB loads ROM and delivers video
+PASS GB native geometry
+PASS GB visible graphics
+PASS GB frame timing and audio callbacks
+PASS GB A, L and R input reach emulated hardware
+PASS GB input changes display
+PASS GB one-second audio sample count
+PASS GB CPU advances before restore
+PASS GB disk save-state restores CPU RAM
+PASS GB deterministic video/RAM replay
+PASS GB battery memory available
+PASS GB battery save survives ROM reload
+PASS GB reset returns to demo
+PASS GB 30-second emulated soak run
+Core GBC version: 0.11-1-7a12d6d; FPS 59.7275; audio 131072
+PASS GBC loads ROM and delivers video
+PASS GBC native geometry
+PASS GBC visible graphics
+PASS GBC frame timing and audio callbacks
+PASS GBC A, L and R input reach emulated hardware
+PASS GBC input changes display
+PASS GBC one-second audio sample count
+PASS GBC CPU advances before restore
+PASS GBC disk save-state restores CPU RAM
+PASS GBC deterministic video/RAM replay
+PASS GBC battery memory available
+PASS GBC battery save survives ROM reload
+PASS GBC reset returns to demo
+PASS GBC 30-second emulated soak run
+Core GBA version: 0.11-1-7a12d6d; FPS 59.7275; audio 65536
+PASS GBA loads ROM and delivers video
+PASS GBA native geometry
+PASS GBA visible graphics
+PASS GBA frame timing and audio callbacks
+PASS GBA A, L and R input reach emulated hardware
+PASS GBA input changes display
+PASS GBA one-second audio sample count
+PASS GBA synthesized tone is non-silent
+PASS GBA CPU advances before restore
+PASS GBA disk save-state restores CPU RAM
+PASS GBA deterministic video/RAM replay
+PASS GBA battery memory available
+PASS GBA battery save survives ROM reload
+PASS GBA reset returns to demo
+PASS GBA 30-second emulated soak run
+PASS Core switch to GBA
+PASS Core switch to GB
+PASS Core switch to SNES
+PASS Core switch to GBC
+PASS Core switch to GBA
+PASS Resampler preserves DC across 100 batches at 32040.000000
+PASS Resampler output rate 32040.000000
+PASS Resampler reset
+PASS Resampler preserves DC across 100 batches at 65536.000000
+PASS Resampler output rate 65536.000000
+PASS Resampler reset
+PASS Resampler preserves DC across 100 batches at 48000.000000
+PASS Resampler output rate 48000.000000
+PASS Resampler reset
+PASS Case-insensitive ROM dispatch for every system
+RESULT: 74 passed, 0 failed
+Does not test Windows GUI, physical speakers/controllers or commercial games.

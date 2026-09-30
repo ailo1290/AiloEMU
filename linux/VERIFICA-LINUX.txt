@@ -1,0 +1,19 @@
+AiloEMU 2.3.0 - verifica Linux x86_64 - 2026-09-28
+
+- Compilazione frontend: OK (GCC, C++17, ELF PIE)
+- Dipendenze mancanti dei 14 core: nessuna
+- Simbolo retro_run nei 14 core: presente
+- Avvio headless NES: OK, 3 s con AddressSanitizer/UBSan, nessun errore
+- Avvio headless SNES: OK
+- Avvio headless GB: OK
+- Avvio headless GBC: OK
+- Avvio headless GBA: OK
+- XML AppStream: valido
+- YAML manifest Flatpak: valido
+- Script shell: sintassi valida
+
+I test headless sono terminati intenzionalmente con timeout perché l'emulatore
+continua correttamente il ciclo di esecuzione finché l'utente non lo chiude.
+
+Nintendo 64 richiede più CPU degli altri sistemi. Il core Linux è configurato
+per il renderer software Angrylion e la CPU cached interpreter, senza BIOS.

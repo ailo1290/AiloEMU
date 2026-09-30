@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=AiloEMU
+GenericName=Emulatore multiconsole
+Comment=Riproduci backup personali di giochi classici
+Exec=ailoemu %f
+Icon=io.github.ailoemu.AiloEMU
+Terminal=false
+Categories=Game;Emulator;
+Keywords=emulator;retro;NES;SNES;Game Boy;Nintendo 64;
+StartupNotify=true
+StartupWMClass=AiloEMU
+X-Flatpak=io.github.ailoemu.AiloEMU

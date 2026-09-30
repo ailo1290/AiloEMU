@@ -1,0 +1,29 @@
+AiloEMU 2.2.0 - verifica controller pixel art e tastiera
+18 settembre 2026
+
+INTERFACCIA
+PASS selezione di tutti i 21 sistemi supportati
+PASS riproduzione pixel art variabile per famiglia e modello di controller
+PASS aree cliccabili sovrapposte ai pulsanti rappresentati
+PASS nome dell'azione e associazione visualizzati dentro ogni pulsante
+PASS selettori separati Tastiera e Gamepad
+PASS cattura di frecce, lettere, numeri, modificatori e tasti speciali
+PASS cattura gamepad XInput e WinMM di pulsanti, grilletti, POV e assi
+PASS comando Canc per rimuovere ed Esc per annullare un'associazione
+
+PROFILI
+PASS mappa tastiera e mappa gamepad indipendenti per console e porta
+PASS tastiera e gamepad utilizzabili simultaneamente
+PASS salvataggio di entrambe le mappe in AiloEMU.ini
+PASS migrazione delle associazioni gamepad create dalla versione 2.1.0
+
+BUILD E REGRESSIONE
+PASS Windows x64 C++17 compilato con -Wall -Wextra -Werror
+PASS 25 test NES
+PASS 74 test SNES/GB/GBC/GBA/audio/cambio core
+PASS test smoke Nintendo DS
+
+La finestra è stata verificata a livello di compilazione, messaggi, coordinate,
+persistenza e logica degli input. Questo ambiente non dispone di desktop Windows
+né di gamepad fisici: il comportamento dei driver specifici va confermato sul
+PC dell'utente. Non sono state usate ROM commerciali.

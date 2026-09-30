@@ -1,0 +1,17 @@
+AiloEMU frontend additional linking permission
+
+For the original AiloEMU frontend and integration-test source files created
+for this project, the copyright holders grant this additional permission:
+you may link these files with independently developed libretro emulator
+cores supplied as separate libraries, including FCEUmm, Snes9x and mGBA,
+and distribute the resulting frontend and separate core libraries, provided
+that you comply with the license of each component and provide the AiloEMU
+source under GPL-2.0-or-later with this exception.
+
+This permission applies only to the original AiloEMU frontend files.
+It grants no rights over third-party core code and removes none of its
+license requirements. In particular, the Snes9x non-commercial-use terms
+remain in force. All original third-party notices must be retained.
+
+You may remove this additional permission from modified versions of the
+frontend. The underlying GPL-2.0-or-later license remains available.

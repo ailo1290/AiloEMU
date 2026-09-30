@@ -1,0 +1,7 @@
+tests/nes-test-roms/instr_test-v5/official_only.nes
+frames=1856
+status=0
+All 16 tests passed
+
+
+

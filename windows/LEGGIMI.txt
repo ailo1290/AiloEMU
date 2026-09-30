@@ -1,0 +1,169 @@
+AILOEMU 2.2.4 - EMULATORE MULTISISTEMA SENZA BIOS ESTERNI
+Windows 10/11 x64 (Intel/AMD), portatile, interfaccia nero e verde
+
+CORREZIONE CORE N64 2.2.4
+- Sostituita la build N64 personalizzata che si bloccava al primo fotogramma
+  di Super Mario 64 con la build ufficiale Libretro del core ParaLLEl N64.
+- Conservate normalizzazione .n64/.v64, cache per percorsi Documenti,
+  renderer software Angrylion e funzionamento senza BIOS esterno.
+
+CORREZIONE N64 .N64 2.2.3
+- I dump word-swapped .n64 e byte-swapped .v64 vengono normalizzati
+  automaticamente in memoria. Risolve il blocco "AiloEMU.exe non risponde"
+  osservato con file .n64. Il file originale non viene modificato.
+- Usato il Cached Interpreter stabile e attivati tutti i thread Angrylion.
+  I due ricompilatori dinamici di questo core restano bloccati nel test.
+
+CORREZIONE N64 2.2.2
+- Le ROM N64 vengono copiate temporaneamente in un percorso locale ASCII:
+  funziona anche quando l'originale si trova in Documenti o in un percorso
+  lungo/con caratteri accentati. La copia viene rimossa alla chiusura.
+- Core CPU impostato su Cached Interpreter per evitare blocchi del JIT causati
+  dalle protezioni di memoria di alcuni sistemi Windows; renderer Angrylion e
+  RSP HLE per l'avvio senza BIOS.
+
+NOVITA' 2.2.1
+- Nuove sprite originali per i 21 sistemi: sagome a pixel, bordi in rilievo,
+  pulsanti ombreggiati, incavi, altoparlanti e schermi. Nessun logo o asset esterno.
+- Assegnazioni dentro i pulsanti; i nomi lunghi sono abbreviati. Passando il mouse
+  sul tasto si legge il nome completo insieme alla funzione nella console.
+- Etichette Mega Drive/32X, WonderSwan, Virtual Boy e N64 allineate ai core.
+  N64 usa ora comandi C indipendenti: verificare e riassegnare il vecchio profilo.
+  Lo stick analogico N64 conserva la gestione diretta degli assi del gamepad;
+  con la tastiera usa le direzioni. Non ha una nuova mappatura separata.
+- Anteprima di tutte le sprite in verification/controllers-2.2.1.png.
+- Aggiornamento sicuro: estrarre in una cartella nuova. Conservare la precedente
+  e copiare AiloEMU.ini e la cartella saves per mantenere impostazioni e salvataggi.
+
+NOVITA' 2.2.0
+- La configurazione mostra una riproduzione pixel art del controller della
+  console selezionata. Ogni pulsante disegnato è cliccabile e contiene il nome
+  del tasto della tastiera o del comando gamepad attualmente assegnato.
+- Tastiera e gamepad hanno associazioni indipendenti per console e giocatore,
+  possono essere abilitati insieme e vengono salvati in AiloEMU.ini.
+- Selettori “Tastiera” e “Gamepad” cambiano direttamente le assegnazioni
+  visualizzate dentro al controller pixel art.
+
+NOVITA' 2.1.0
+- Finestra Impostazioni in stile pannello PCSX2, con sezioni Controller e Aspetto.
+- Profili gamepad indipendenti per ogni console e per ogni porta giocatore.
+- Rilevamento di controller XInput e controller generici esposti da Windows
+  tramite WinMM; assegnazione di pulsanti, grilletti, POV e direzioni assi.
+- Tutti i 16 comandi RetroPad configurabili: direzioni, A/B/X/Y, L/R,
+  L2/R2, L3/R3, Start e Select.
+- Colori personalizzabili per sfondo, pannelli, evidenziazione, testo principale
+  e testo secondario, con selettore Windows e ripristino nero/verde.
+
+CORREZIONE 2.0.1
+Corretto il caricamento Nintendo DS da percorsi Windows lunghi o con caratteri
+Unicode. Le ROM .nds vengono copiate in una cache interna con nome sicuro e
+caricate in memoria; la cache viene rimossa alla chiusura o al cambio di gioco.
+Il controllo dell'header ora distingue inoltre i dump troncati/non validi.
+
+AVVIO
+1. Estrai TUTTA la cartella dello ZIP: EXE e DLL devono restare insieme.
+2. Apri AiloEMU.exe.
+3. File > Apri ROM, trascina una ROM nella finestra oppure associa il file.
+4. Usa solo copie ottenute legalmente. AiloEMU non scarica né include giochi.
+
+Non richiede installazione, RetroArch, Python, .NET, Visual C++ Runtime o BIOS
+esterni per i formati elencati. Funziona offline. Non aprire direttamente ZIP,
+7Z o RAR: estrai prima la ROM. L'estensione .bin non viene accettata perché è
+ambigua tra più console.
+
+SISTEMI E FORMATI
+  NES                         .nes
+  SNES / Super Famicom        .sfc .smc
+  Game Boy / Color / Advance  .gb .gbc .gba
+  Mega Drive / Genesis        .md .mdx .gen .smd .68k .sgd
+  Master System               .sms
+  Game Gear                   .gg
+  SG-1000                     .sg .sg1000
+  Sega 32X                    .32x .pco
+  Atari 2600 / 7800           .a26 .a78 .cdf
+  Neo Geo Pocket / Color      .ngp .ngc .ngpc .npc
+  WonderSwan / Color          .ws .wsc .pc2
+  PC Engine / TurboGrafx-16   .pce
+  Nintendo DS                 .nds
+  Nintendo 64                 .z64 .n64 .v64 .u1
+  Virtual Boy                 .vb .vboy
+  Pokémon Mini                .min
+
+La selezione del sistema è automatica. I giochi su CD, floppy, arcade e le
+console che richiedono firmware proprietario non fanno parte di questa build.
+In particolare: niente Sega CD, PC Engine CD, PlayStation, Saturn, Dreamcast,
+GameCube, Wii, 3DS o set MAME. “Qualunque gioco” non è tecnicamente possibile:
+anche sui sistemi inclusi possono esistere mapper, accessori o titoli incompatibili.
+
+CONTROLLI
+Giocatore 1: frecce; X=A; Z=B; Invio=Start; Maiusc destro=Select;
+C=X; V=Y; Q=L; E=R.
+Giocatore 2: W A S D; G=A; F=B; T=Start; R=Select;
+H=X; J=Y; Y=L; U=R.
+
+Controller: apri Impostazioni > Controller, seleziona console e porta giocatore.
+Appare il relativo controller in pixel art. Seleziona “Tastiera” o “Gamepad”,
+fai clic direttamente sul pulsante disegnato e premi il tasto, pulsante, POV,
+grilletto o asse desiderato. L'associazione compare dentro al pulsante.
+Sono elencate le quattro porte XInput e tutti i joystick/gamepad generici
+visibili tramite WinMM. Nintendo 64 espone quattro porte; le console domestiche
+due e le portatili una. La casella “Tastiera attiva insieme al gamepad” consente
+di usare entrambi simultaneamente. Nintendo DS usa inoltre il mouse come stilo.
+
+Se lo stesso gamepad compare sia come XInput sia come WinMM, scegli XInput.
+Alcuni controller proprietari richiedono il driver del produttore affinché
+Windows li esponga a una delle due API.
+
+COLORI
+Impostazioni > Colori dell'interfaccia permette di cambiare sfondo, pannelli,
+evidenziazione e testi. Il pulsante “Ripristina nero e verde” torna al tema
+predefinito. Tema e profili controller vengono salvati in AiloEMU.ini.
+
+SCORCIATOIE
+Ctrl+O apri; P pausa; Ctrl+R reset; F5 salva stato; F8 carica stato;
+F11 o Alt+Invio schermo intero; Esc finestra; M audio; F12 screenshot;
+F1 controlli. Gli slot 1-5 sono nel menu Gioco.
+
+SALVATAGGI
+SRAM/RTC vengono salvati ogni 15 secondi e alla chiusura/cambio ROM. Ogni
+sistema ha una sottocartella in saves/. Gli stati rapidi dipendono dalla ROM
+e dalla versione esatta del nucleo; non sono garantiti tra aggiornamenti.
+Se la cartella non è scrivibile, i dati vanno in %LOCALAPPDATA%\AiloEMU.
+
+REQUISITI DI SISTEMA
+  Minimi: Windows 10 x64, CPU x86-64 dual-core, 2 GB RAM libera,
+  schermo 1280x720, audio Windows, circa 500 MB liberi dopo l'estrazione.
+  Consigliati: Windows 11 x64, CPU 4 core recente a 3 GHz o più,
+  4 GB RAM libera, controller XInput.
+
+Nintendo DS e soprattutto Nintendo 64 sono i sistemi più pesanti. Il core N64
+usa il renderer software Angrylion per non dipendere da driver OpenGL/Vulkan:
+privilegia portabilità e correttezza, ma può essere lento su CPU modeste.
+Nessuna GPU dedicata è richiesta dall'interfaccia GDI.
+
+NUCLEI INCLUSI
+FCEUmm, Snes9x, mGBA, Genesis Plus GX, PicoDrive, Stella 2014, ProSystem,
+Beetle NeoPop, Beetle WonderSwan, Beetle PCE Fast, DeSmuME 2015,
+ParaLLEl N64, Beetle VB e PokeMini. Sono progetti indipendenti; consulta
+licenses/ATTRIBUTIONS.txt. Snes9x, Genesis Plus GX e PicoDrive impongono
+uso/distribuzione non commerciale: questa build gratuita rispetta tali limiti.
+
+LIMITI NOTI
+- Niente netplay, rewind, cheat UI, link cable, microfono DS o accessori speciali.
+- NDS: layout verticale 256x384, stilo via mouse; giochi che richiedono il
+  microfono o funzioni di rete non sono pienamente utilizzabili.
+- N64: renderer CPU senza dynarec; compatibilità e velocità variano per gioco.
+- I menu PAL/NTSC sono disponibili solo per NES e SNES.
+- Cinque demo originali CC0 sono incluse per NES, SNES, GB, GBC e GBA.
+
+VERIFICA E SORGENTI
+I test automatizzati precedenti restano inclusi: 25 NES e 74 test
+SNES/GB/GBC/GBA/audio. I nuovi nuclei hanno superato il controllo ABI e
+inizializzazione su Linux; DLL ed EXE Windows sono stati compilati e le loro
+dipendenze analizzate. Non sono stati provati giochi commerciali né hardware
+Windows fisico in questo ambiente. Consulta VERIFICA.txt e verification/.
+
+source/ contiene frontend, test e sorgenti/archivi dei nuclei. BUILD.md indica
+revisioni e ricompilazione. Il frontend è GPL-2.0-or-later con eccezione di
+collegamento; ogni nucleo conserva la propria licenza. Nessun BIOS proprietario,
+ROM commerciale, grafica di personaggi o musica commerciale è distribuito.

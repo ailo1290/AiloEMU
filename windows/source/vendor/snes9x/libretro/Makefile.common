@@ -1,0 +1,76 @@
+ifeq ($(LIBRETRO_COMM_DIR),)
+	LIBRETRO_COMM_DIR = $(CORE_DIR)/libretro/libretro-common
+endif
+
+INCFLAGS   = -I$(CORE_DIR)/libretro -I$(LIBRETRO_COMM_DIR)/include -I$(CORE_DIR) -I$(CORE_DIR)/apu/ -I$(CORE_DIR)/apu/bapu
+
+ifneq (,$(findstring msvc2003,$(platform)))
+INCFLAGS += -I$(LIBRETRO_COMM_DIR)/include/compat/msvc
+endif
+
+SOURCES_C   := $(CORE_DIR)/c4emu.c \
+	       $(CORE_DIR)/msu1.c \
+	       $(CORE_DIR)/zipfile.c \
+	       $(CORE_DIR)/srtc.c \
+	       $(CORE_DIR)/obc1.c \
+	       $(CORE_DIR)/bsflash.c \
+	       $(CORE_DIR)/tile.c \
+	       $(CORE_DIR)/bsx.c \
+	       $(CORE_DIR)/spc7110.c \
+	       $(CORE_DIR)/fxemu.c \
+	       $(CORE_DIR)/sdd1.c \
+	       $(CORE_DIR)/seta.c \
+	       $(CORE_DIR)/sa1hw.c \
+	       $(CORE_DIR)/dsp.c \
+	       $(CORE_DIR)/filter/snes_ntsc.c
+SOURCES_CXX := $(CORE_DIR)/apu/apu.cpp \
+	       $(CORE_DIR)/apu/bapu/dsp/sdsp.cpp \
+	       $(CORE_DIR)/apu/bapu/smp/smp.cpp \
+	       $(CORE_DIR)/apu/bapu/smp/smp_state.cpp \
+	       $(CORE_DIR)/cheats2.cpp \
+	       $(CORE_DIR)/clip.cpp \
+	       $(CORE_DIR)/controls.cpp \
+	       $(CORE_DIR)/cpu.cpp \
+	       $(CORE_DIR)/cpuexec.cpp \
+	       $(CORE_DIR)/cpuops.cpp \
+	       $(CORE_DIR)/crosshairs.cpp \
+	       $(CORE_DIR)/dma.cpp \
+	       $(CORE_DIR)/gfx.cpp \
+	       $(CORE_DIR)/globals.cpp \
+	       $(CORE_DIR)/loadzip.cpp \
+	       $(CORE_DIR)/memmap.cpp \
+	       $(CORE_DIR)/ppu.cpp \
+	       $(CORE_DIR)/sa1.cpp \
+	       $(CORE_DIR)/sa1cpu.cpp \
+	       $(CORE_DIR)/snapshot.cpp \
+	       $(CORE_DIR)/sha256.cpp \
+	       $(CORE_DIR)/bml.cpp \
+	       $(CORE_DIR)/fscompat.cpp \
+	       $(CORE_DIR)/libretro/libretro.cpp
+
+# libretro VFS support. On statically linked platforms the frontend
+# provides all of these symbols (file_stream, vfs_implementation and
+# friends are part of RetroArch there), so they must stay out of the
+# core or the final link sees every symbol twice; snes9x2010 uses the
+# same split.
+ifeq ($(STATIC_LINKING),1)
+else
+SOURCES_C += \
+	$(LIBRETRO_COMM_DIR)/compat/compat_posix_string.c \
+	$(LIBRETRO_COMM_DIR)/compat/compat_strcasestr.c \
+	$(LIBRETRO_COMM_DIR)/compat/compat_snprintf.c \
+	$(LIBRETRO_COMM_DIR)/compat/compat_strl.c \
+	$(LIBRETRO_COMM_DIR)/compat/fopen_utf8.c \
+	$(LIBRETRO_COMM_DIR)/encodings/encoding_utf.c \
+	$(LIBRETRO_COMM_DIR)/encodings/encoding_deflate.c \
+	$(LIBRETRO_COMM_DIR)/file/file_path.c \
+	$(LIBRETRO_COMM_DIR)/file/file_path_io.c \
+	$(LIBRETRO_COMM_DIR)/streams/file_stream.c \
+	$(LIBRETRO_COMM_DIR)/streams/file_stream_transforms.c \
+	$(LIBRETRO_COMM_DIR)/string/stdstring.c \
+	$(LIBRETRO_COMM_DIR)/time/rtime.c \
+	$(LIBRETRO_COMM_DIR)/vfs/vfs_implementation.c \
+	$(LIBRETRO_COMM_DIR)/vfs/vfs_hybrid.c \
+	$(LIBRETRO_COMM_DIR)/file/retro_dirent.c
+endif
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.github.ailoemu.AiloEMU</id>
+  <name>AiloEMU</name>
+  <summary>Emulatore multiconsole senza BIOS obbligatori</summary>
+  <developer id="io.github.ailoemu"><name>AiloEMU contributors</name></developer>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-2.0-or-later</project_license>
+  <description>
+    <p>AiloEMU esegue copie di backup ottenute legalmente per NES, SNES, Game Boy, Game Boy Color, Game Boy Advance, Nintendo DS, Nintendo 64 e numerosi sistemi Sega, Atari, NEC e SNK.</p>
+    <p>Include un'interfaccia nera e verde adatta al televisore, navigazione con gamepad, salvataggi e supporto fino a quattro controller. Non include giochi né BIOS.</p>
+  </description>
+  <launchable type="desktop-id">io.github.ailoemu.AiloEMU.desktop</launchable>
+  <provides><binary>ailoemu</binary></provides>
+  <content_rating type="oars-1.1"/>
+  <recommends><control>gamepad</control><control>keyboard</control></recommends>
+  <releases><release version="2.3.0" date="2026-09-28"><description><p>Prima versione nativa per Linux e Bazzite.</p></description></release></releases>
+</component>

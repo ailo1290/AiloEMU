@@ -1,0 +1,48 @@
+AiloEMU 2.0 — attribuzioni, revisioni e licenze
+
+Frontend, adattatore libretro, test e documentazione: Copyright (C) 2026
+AiloEMU contributors. GPL-2.0-or-later con l'eccezione descritta in
+AiloEMU-Core-Linking-Exception.txt. Nessuna garanzia.
+
+Core inclusi (sorgente corrispondente in source/vendor o source/vendor-sources):
+
+FCEUmm — https://github.com/libretro/libretro-fceumm
+  rev 236ccdfc911e84c60fea6b9d0699c2d440a8de14; GPL v2.
+Snes9x — https://github.com/libretro/snes9x
+  rev 890b5d445538fe790aa3add3d5702c80f551e0ae;
+  licenza Snes9x, SOLO uso/distribuzione non commerciale.
+mGBA — https://github.com/libretro/mgba
+  rev 7a12d6d4b9acb14c0ae62c9166b6a2f3d08007f6; MPL-2.0.
+Genesis Plus GX — https://github.com/libretro/Genesis-Plus-GX
+  rev c2838c7dc423; licenza non commerciale nei sorgenti e
+  Genesis-Plus-GX-LICENSE.txt.
+PicoDrive — https://github.com/libretro/picodrive
+  rev ab021146b70e; licenza non commerciale in PicoDrive-COPYING.txt.
+Stella 2014 — https://github.com/libretro/stella2014-libretro
+  rev 7d1361e407e6; GPL-2.0.
+ProSystem — https://github.com/libretro/prosystem-libretro
+  rev 8a88014287c7; GPL-2.0 e avvisi nei sorgenti.
+Beetle NeoPop — https://github.com/libretro/beetle-ngp-libretro
+  rev a50d5ac288a8; GPL-2.0.
+Beetle WonderSwan — https://github.com/libretro/beetle-wswan-libretro
+  rev 4b01295838ea; GPL-2.0.
+Beetle PCE Fast — https://github.com/libretro/beetle-pce-fast-libretro
+  rev eed8075ece35; GPL-2.0.
+DeSmuME 2015 — https://github.com/libretro/desmume2015
+  rev 422b688009cc; GPL-2.0.
+ParaLLEl N64 — https://github.com/libretro/parallel-n64
+  rev 2f3bf60dcd96; GPL-2.0 e licenze componenti nei sorgenti.
+Beetle VB — https://github.com/libretro/beetle-vb-libretro
+  rev 83ed42608601; GPL-2.0.
+PokeMini — https://github.com/libretro/PokeMini
+  rev 132111b76343; GPL-3.0-or-later per il port libretro; avvisi nei sorgenti.
+
+libretro API header: Copyright The RetroArch team, licenza MIT nell'header.
+Runtime GCC/libstdc++ e MinGW-w64: licenze ed eccezioni nei rispettivi file.
+libwinpthread-1.dll proviene dal runtime MinGW-w64 incluso.
+
+Le cinque demo Ailo e i generatori originali sono dedicate al pubblico dominio
+con CC0-1.0. Keystone è solo uno strumento opzionale e non è redistribuito.
+
+Nessun BIOS Nintendo/Sega/NEC/Sony, ROM commerciale, artwork di personaggi
+o musica commerciale è incluso.

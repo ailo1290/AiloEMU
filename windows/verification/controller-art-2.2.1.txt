@@ -1,0 +1,20 @@
+AILOEMU 2.2.1 — 18 settembre 2026
+
+PASS: compilazione C++17 Windows x64, -Wall -Wextra -Werror.
+PASS: controller_art_test.cpp, 21 sprite / 193 aree valide senza sovrapposizioni.
+PASS: controllo delle etichette speciali Mega Drive, WonderSwan, Virtual Boy,
+      Nintendo 64 e Pokemon Mini rispetto alle mappe dei sorgenti core locali.
+Anteprime: controllers-2.2.1.png, generate dallo stesso renderer dell'EXE.
+La tavola mostra solo le sprite: il testo delle assegnazioni è aggiunto
+dall'interfaccia Windows e non è incluso nell'anteprima.
+
+NON ESEGUITO: collaudo interattivo Windows, cattura tasti, gamepad fisici,
+verifica DPI e font GDI a schermo. Nessuna garanzia di compatibilità universale.
+
+Riproduzione test sprite da Linux:
+g++ -std=c++17 -O2 -Wall -Wextra -Werror source/controller_art_test.cpp -ldl -o /tmp/ailo-art-test
+/tmp/ailo-art-test /tmp/ailo-controller-previews
+
+Compatibilità profili: formato INI invariato. Per N64 è ora attiva la modalità
+C indipendenti: ricontrollare le associazioni dopo l'aggiornamento.
+Le correzioni delle etichette degli altri sistemi non modificano i dati INI.

@@ -1,0 +1,30 @@
+Core: FCEUmm (SVN) 236ccdf
+Platform: native Linux test build (not Windows GUI)
+PASS ROM loaded and 120 video callbacks delivered
+PASS Native framebuffer is 256 x 240
+PASS PPU produces multiple visible colors
+PASS NTSC timing
+PASS 48 kHz stereo sample generation
+PASS CPU startup / zero-page / initial sprite coordinates
+PASS Controller 1 shifts right input through $4016
+PASS Sprite movement changes rendered image
+PASS Controller 2 shifts A input through $4017
+PASS Battery-backed PRG RAM exposed
+PASS APU pulse signal amplitude and 1-second sample count
+PASS 6502 stores A press to battery-backed SRAM
+PASS Game advances before state restoration
+PASS Save-state restores CPU / RAM
+PASS Core accepts serialized state
+PASS Deterministic replay: video and RAM after restoring state
+PASS Corrupt save-state rejected by checksum
+PASS SRAM persists after ROM unload / reload
+PASS Start button resets demo position
+PASS Truncated iNES rejected without closing current game
+PASS Invalid file signature rejected without closing current game
+PASS Console reset reboots CPU and cartridge
+PASS 60-second emulated soak run completes
+PASS PAL header selects 50 Hz timing
+PASS State from another ROM is rejected
+
+RESULT: 25 passed, 0 failed
+These checks do not verify speakers, physical controllers, or Windows GUI rendering.

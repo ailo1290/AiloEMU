@@ -1,0 +1,17 @@
+# Build outputs and local user data
+*.o
+*.obj
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+*.pdb
+/source/build*/
+/windows/source/build*/
+/linux/source/build*/
+/linux/bin/ailoemu
+**/saves/
+**/screenshots/
+**/test-results/
+**/test-output*/

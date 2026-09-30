@@ -1,0 +1,27 @@
+AiloEMU 2.1.0 - verifica controller e tema
+18 settembre 2026
+
+BUILD
+PASS frontend Windows x64 compilato con C++17, -Wall -Wextra -Werror
+PASS nessuna nuova dipendenza runtime non di sistema
+PASS importazioni XInput caricate dinamicamente da System32
+PASS joystick generici letti tramite WINMM.dll di Windows
+
+CONFIGURAZIONE
+PASS 21 profili console indipendenti
+PASS da 1 a 4 porte in base alla console
+PASS 16 comandi configurabili per porta
+PASS salvataggio separato di dispositivo e associazioni in AiloEMU.ini
+PASS cinque colori dell'interfaccia persistenti con tema nero/verde predefinito
+
+REGRESSIONE CORE
+PASS NES: 25 test
+PASS SNES/GB/GBC/GBA/audio/cambio core: 74 test
+PASS Nintendo DS: caricamento homebrew sintetico e pulizia cache
+
+LIMITI DELLA VERIFICA
+La compilazione con controlli severi verifica tipi, API e collegamento. In questo
+ambiente non sono disponibili Windows fisico e gamepad reali; rilevamento,
+finestra grafica e associazioni devono quindi essere confermati dall'utente sul
+proprio PC. Un dispositivo proprietario deve essere esposto dal suo driver a
+XInput o WinMM.
